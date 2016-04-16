@@ -1,10 +1,13 @@
 set shell=/bin/zsh          " http://stackoverflow.com/a/12231417
-set startofline
-set splitbelow
+"set startofline
+set splitbelow              " Split Below when excute vim command
 set nocompatible            " required
-set nofoldenable
-set noswapfile
-set nowrap
+set nofoldenable            " No Folding
+set noswapfile              " No Swap File
+set nowrap                  " No Wrap
+"set autowrite               " AutoSave when switch other file
+set autoread                " Automatically read when external changed
+set ruler                   " current cursor position
 set history=1000            " Vim History
 filetype off                " required
 
@@ -16,22 +19,33 @@ call vundle#begin()
 " call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 Plugin 'gmarik/Vundle.vim'
+
+" NERD Tree (:NERDTree or :NERDTreeToggle)
+Plugin 'scrooloose/nerdtree'
+
+" AutoComplPop
+Plugin 'vim-scripts/AutoComplPop'
 
 " Python AutoComplete (sudo -H pip3 install jedi)
 Plugin 'davidhalter/jedi-vim'
-Plugin 'nvie/vim-flake8'    " Press <F7>
+" Python flake8 (Press <F7>)
+Plugin 'nvie/vim-flake8'
 
 " Markdown
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+
+" Monokai Scheme
+Plugin 'sickill/vim-monokai'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 " Vim automatic visual mode using mouse
-set mouse=a
+set mouse-=a  " Disabled
 
 " enable syntax highlighting
 syntax enable
@@ -93,7 +107,6 @@ let python_highlight_all = 1
 
 " " Powerline
 set rtp+=/usr/local/lib/python3.4/dist-packages/powerline/bindings/vim/
-
 " Always show statusline
 set laststatus=2
 
@@ -112,4 +125,13 @@ set matchpairs=(:),{:},[:],<:>
 
 " HTML tag autocomplete
 iabbrev </ </<C-X><C-O>
+
+" Window resize shortcut
+nnoremap <silent> <Leader>= :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+nnoremap <silent> <Leader>+ :exe "vertical resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>_ :exe "vertical resize " . (winheight(0) * 2/3)<CR>
+
+" NERD Tree
+nmap <F7> :NERDTree<CR>
 
