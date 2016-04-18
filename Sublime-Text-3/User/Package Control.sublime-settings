@@ -1,0 +1,25 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"All Autocomplete",
+		"BracketHighlighter",
+		"Codecs33",
+		"ConvertToUTF8",
+		"Git",
+		"HTML-CSS-JS Prettify",
+		"Jedi - Python autocompletion",
+		"MagicPython",
+		"Markdown Extended",
+		"Monokai Extended",
+		"Package Control",
+		"Python PEP8 Autoformat",
+		"SideBarEnhancements",
+		"SublimeCodeIntel",
+		"SublimeLinter",
+		"SublimeLinter-pep8"
+	]
+}

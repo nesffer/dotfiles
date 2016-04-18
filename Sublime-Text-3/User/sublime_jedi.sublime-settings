@@ -1,0 +1,24 @@
+{
+    // Used to get the `PYTHONPATH`.
+    // You can set a path to your python interpreter,
+    // for example `/home/user/.virtualenvs/myenv/bin/python)`.
+    "python_interpreter": "python3",
+
+    // Additional python package paths.
+     "python_package_paths": [],
+
+    // Which function arguments to insert in autocompletion:
+    // "all" - all
+    // "required" - those with no default value (that are required)
+    // "" - none
+    "auto_complete_function_params": "all",
+
+    // "debug", "error", "info", "warn"
+    "logging_level": "warn",
+
+    // Which completions to show:
+    // "all" - both jedi's and sublime's
+    // "jedi" - only jedi's
+    // "default" - only jedi's if it has something to show, otherwise sublime's
+    "sublime_completions_visibility": "all"
+}
