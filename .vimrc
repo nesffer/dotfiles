@@ -1,6 +1,7 @@
 set shell=/bin/zsh          " http://stackoverflow.com/a/12231417
 "set startofline
-set splitbelow              " Split Below when excute vim command
+set splitright              " Split Right (:vs)
+set splitbelow              " Split Below (:sp)
 set nocompatible            " required
 set nofoldenable            " No Folding
 set noswapfile              " No Swap File
@@ -10,17 +11,20 @@ set autoread                " Automatically read when external changed
 set ruler                   " current cursor position
 set history=1000            " Vim History
 filetype off                " required
+set fileformat=unix         " Unix file format
+set clipboard=unnamed       " Sync clipboard with OS
+
+" ==========Plugins============================================Plugins==========
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" alternatively, pass a path where Vundle should install plugins
-" call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
 " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 Plugin 'gmarik/Vundle.vim'
+
+" vim-fcitx
+Plugin 'vim-scripts/fcitx.vim'
 
 " NERD Tree (:NERDTree or :NERDTreeToggle)
 Plugin 'scrooloose/nerdtree'
@@ -31,7 +35,10 @@ Plugin 'vim-scripts/AutoComplPop'
 " Python AutoComplete (sudo -H pip3 install jedi)
 Plugin 'davidhalter/jedi-vim'
 " Python flake8 (Press <F7>)
-Plugin 'nvie/vim-flake8'
+"Plugin 'nvie/vim-flake8'
+
+" JavaScript (https://github.com/pangloss/vim-javascript)
+Plugin 'pangloss/vim-javascript'
 
 " Markdown
 Plugin 'godlygeek/tabular'
@@ -50,6 +57,8 @@ set mouse-=a  " Disabled
 " enable syntax highlighting
 syntax enable
 
+" ==========Display============================================Display==========
+
 " Show Title
 set title
 
@@ -59,41 +68,24 @@ set numberwidth=4
 
 " set tabs to have 4 spaces
 set tabstop=4
-
-" number of spaces in tab when editing
 set softtabstop=4
-
-" indent when moving to the next line while writing code
-" set autoindent
-set smartindent
-
-" expand tabs into spaces
+set shiftwidth=4
 set expandtab
 
-" when using the >> or << commands, shift lines by 4 spaces
-set shiftwidth=4
+" Hightlight Cursor line
+set cursorline
+
+" set autoindent
+set smartindent
 
 " Backspace to previous line
 set backspace=start,eol,indent
 
 " show a visual line under the cursor's current line
-set cursorline
 
-" show the matching part of the pair for [] {} and ()
+" Brace Match
 set showmatch
-
-" unix file format
-set fileformat=unix
-
-" Hightlight Search
-set hlsearch
-" Ignore Case sensitivity Search
-set ignorecase
-" Gradually Search
-set incsearch
-
-" Background Color
-" set background=dark
+set matchpairs=(:),{:},[:],<:>
 
 " 80 column
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -102,29 +94,36 @@ match OverLength /\%80v.\+/
 " trim automatic white space
 autocmd BufWritePre * :%s/\s\+$//e
 
-" enable all Python syntax highlighting features
-let python_highlight_all = 1
-
-" " Powerline
+" =====Powerline=====
 set rtp+=/usr/local/lib/python3.4/dist-packages/powerline/bindings/vim/
 " Always show statusline
 set laststatus=2
-
-" Use 256 colours (Use this setting only if your terminal supports 256 colours)
+" Use 256 colours
 set t_Co=256
-" " Powerline
-
-" vim-markdown
-let g:vim_markdown_folding_disabled = 1
+" =====Powerline=====
 
 " Monokai Scheme (~/.vim/colors/monokai.vim)
 colorscheme monokai
 
-" Brace Match
-set matchpairs=(:),{:},[:],<:>
+" ==========Search==============================================Search==========
+
+" Hightlight Search
+set hlsearch
+" Ignore Case sensitivity Search
+set ignorecase
+" Gradually Search
+set incsearch
+
+" enable all Python syntax highlighting features
+let python_highlight_all = 1
+
+" vim-markdown
+let g:vim_markdown_folding_disabled = 1
 
 " HTML tag autocomplete
 iabbrev </ </<C-X><C-O>
+
+" ==========Mapping============================================Mapping==========
 
 " Window resize shortcut
 nnoremap <silent> <Leader>= :exe "resize " . (winheight(0) * 3/2)<CR>
@@ -133,5 +132,5 @@ nnoremap <silent> <Leader>+ :exe "vertical resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>_ :exe "vertical resize " . (winheight(0) * 2/3)<CR>
 
 " NERD Tree
-nmap <F7> :NERDTree<CR>
+nnoremap <F7> :NERDTree<CR>
 
